@@ -30,20 +30,6 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
-
-    	<dependency>
-    		<groupId>com.netflix.eureka2</groupId>
-    		<artifactId>eureka-client</artifactId>
-    		<version>2.0.0-DP4</version>
-    	</dependency>
-
-
-    	git <dependency>
-    		<groupId>org.springframework.cloud</groupId>
-    		<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-    		<version>4.2.0</version>
-    	</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -96,7 +82,6 @@
             <artifactId>spring-cloud-commons</artifactId>
             <version>4.2.0</version>
         </dependency>
-
     </dependencies>
 
 	<build>
