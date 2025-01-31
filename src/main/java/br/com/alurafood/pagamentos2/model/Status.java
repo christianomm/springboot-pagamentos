@@ -3,5 +3,7 @@ package br.com.alurafood.pagamentos2.model;
 public enum Status {
     CRIADO,
     CONFIRMADO,
-    CANCELADO
+    CONFIRMADO_SEM_INTEGRACAO,
+    CANCELADO,
+
 }
