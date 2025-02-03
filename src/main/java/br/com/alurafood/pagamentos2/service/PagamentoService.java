@@ -11,7 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PagamentoService {
@@ -24,18 +27,33 @@ public class PagamentoService {
 
    @Autowired
    private PedidoClient pedido;
-
+    /*
     public Page<PagamentoDto> obterTodos(Pageable paginacao) {
         return (Page<PagamentoDto>) repository
                 .findAll(paginacao)
                 .map(p -> modelMapper.map(p, PagamentoDto.class));
     }
+    */
+
+    public List<PagamentoDto> obterTodos() {
+    return repository
+            .findAll()
+            .stream()
+            .map(p -> modelMapper.map(p, PagamentoDto.class))
+            .collect(Collectors.toList());
+}
+
+
+
 
     public PagamentoDto obterPorId(Long id) {
         Pagamento pagamento = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException());
+        PagamentoDto dto = modelMapper.map((pagamento), PagamentoDto.class);
+        dto.setItens(pedido.obterItensDoPedido(pagamento.getPedidoId()).getItens());
+        return dto;
 
-        return modelMapper.map(pagamento, PagamentoDto.class);
+       //eturn modelMapper.map(pagamento, PagamentoDto.class);
     }
 
     public PagamentoDto criarPagamento(PagamentoDto dto) {
@@ -78,4 +96,6 @@ public class PagamentoService {
         repository.save(pagamento.get());
 
     }
+
+   
 }

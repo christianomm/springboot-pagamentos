@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pagamentos")
@@ -24,10 +25,20 @@ public class PagamentoController {
     @Autowired
     private PagamentoService service;
 
-    @GetMapping
+   /* @GetMapping
     public Page<PagamentoDto> listar(@PageableDefault(size = 10) Pageable paginacao) {
         return service.obterTodos(paginacao);
-    }
+    }*/
+
+    @GetMapping
+    public List<PagamentoDto> listar() {
+        
+        
+        return service.obterTodos();
+    }   
+    
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<PagamentoDto> detalhar(@PathVariable @NotNull Long id) {
